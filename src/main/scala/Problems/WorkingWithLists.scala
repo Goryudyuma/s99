@@ -60,4 +60,14 @@ object WorkingWithLists {
       case _ => reverse(list ++ ans)
     }
   }
+
+  @tailrec
+  def pack[A](list: List[A], prev: List[A] = List(), ans: List[List[A]] = List()): List[List[A]] = {
+    if (list.isEmpty) reverse(prev :: ans)
+    else {
+      val head = list.head
+      if (prev.nonEmpty && prev.head == head || prev.isEmpty) pack(list.tail, head :: prev, ans)
+      else pack(list.tail, List(head), prev :: ans)
+    }
+  }
 }
