@@ -20,4 +20,12 @@ object WorkingWithLists {
       case _ => throw new java.util.NoSuchElementException
     }
   }
+
+  @tailrec
+  def nth[A](num: Int, list: List[A]): A = {
+    if (num < 0) throw new java.util.NoSuchElementException
+    else if (list.isEmpty) throw new java.util.NoSuchElementException
+    else if (num == 0) list.head
+    else nth(num - 1, list.tail)
+  }
 }
