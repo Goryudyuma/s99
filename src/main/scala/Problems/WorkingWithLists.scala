@@ -28,4 +28,10 @@ object WorkingWithLists {
     else if (num == 0) list.head
     else nth(num - 1, list.tail)
   }
+
+  @tailrec
+  def length[A](list: List[A], ans: Int = 0): Int = {
+    if (list.isEmpty) ans
+    else length(list.tail, ans + 1)
+  }
 }

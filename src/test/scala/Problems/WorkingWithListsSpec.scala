@@ -42,4 +42,11 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
       nth(-1, List(1, 1, 2, 3, 5, 8))
     }
   }
+
+  "P04" should "例ケース" in {
+    WorkingWithLists.length(List(1, 1, 2, 3, 5, 8)) shouldEqual 6
+  }
+  it should "listの長さが1の場合" in {
+    WorkingWithLists.length(List(1)) shouldEqual 1
+  }
 }
