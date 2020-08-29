@@ -16,4 +16,13 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
       last(List(): List[Int])
     }
   }
+  
+  "P02" should "例ケース" in {
+    penultimate(List(1, 1, 2, 3, 5, 8)) shouldEqual 5
+  }
+  it should "listの長さが1の場合" in {
+    assertThrows[java.util.NoSuchElementException] {
+      penultimate(List(1): List[Int])
+    }
+  }
 }

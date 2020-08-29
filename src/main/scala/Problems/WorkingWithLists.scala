@@ -11,4 +11,13 @@ object WorkingWithLists {
       case Nil => throw new java.util.NoSuchElementException
     }
   }
+
+  @tailrec
+  def penultimate[A](list: List[A]): A = {
+    list match {
+      case head :: _ :: Nil => head
+      case _ :: second :: tail => penultimate(second :: tail)
+      case _ => throw new java.util.NoSuchElementException
+    }
+  }
 }
