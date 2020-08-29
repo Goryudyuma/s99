@@ -125,4 +125,30 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
         List(Symbol("d")),
         List(Symbol("e"), Symbol("e"), Symbol("e"), Symbol("e")))
   }
+
+  "P10" should "例ケース" in {
+    WorkingWithLists.encode(
+      List(
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("c"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("e"),
+        Symbol("e"),
+        Symbol("e"))) shouldEqual
+      List(
+        (4, Symbol("a")),
+        (1, Symbol("b")),
+        (2, Symbol("c")),
+        (2, Symbol("a")),
+        (1, Symbol("d")),
+        (4, Symbol("e")))
+  }
 }

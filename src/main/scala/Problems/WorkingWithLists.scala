@@ -70,4 +70,8 @@ object WorkingWithLists {
       else pack(list.tail, List(head), prev :: ans)
     }
   }
+
+  def encode[A](list: List[A]): List[(Int, A)] = {
+    pack(list).map(one => (length(one), one.head))
+  }
 }
