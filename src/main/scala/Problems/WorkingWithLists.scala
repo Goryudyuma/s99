@@ -34,4 +34,10 @@ object WorkingWithLists {
     if (list.isEmpty) ans
     else length(list.tail, ans + 1)
   }
+
+  @tailrec
+  def reverse[A](list: List[A], ret: List[A] = List()): List[A] = {
+    if (list.isEmpty) ret
+    else reverse(list.tail, list.head +: ret)
+  }
 }

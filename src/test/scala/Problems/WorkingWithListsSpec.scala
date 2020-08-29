@@ -48,4 +48,14 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
   it should "listの長さが1の場合" in {
     WorkingWithLists.length(List(1)) shouldEqual 1
   }
+
+  "P05" should "例ケース" in {
+    WorkingWithLists.reverse(List(1, 1, 2, 3, 5, 8)) shouldEqual List(8, 5, 3, 2, 1, 1)
+  }
+  it should "listが1だけの場合" in {
+    WorkingWithLists.reverse(List(1)) shouldEqual List(1)
+  }
+  it should "listが空の場合" in {
+    WorkingWithLists.reverse(List(): List[Int]) shouldEqual List()
+  }
 }
