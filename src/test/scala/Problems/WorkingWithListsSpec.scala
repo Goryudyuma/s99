@@ -65,4 +65,12 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
   it should "回文ではない場合" in {
     WorkingWithLists.isPalindrome(List(1, 2, 3, 2, 2)) shouldEqual false
   }
+
+  "P07" should "例ケース" in {
+    WorkingWithLists.flatten(List(List(1, 1), 2, List(3, List(5, 8)))) shouldEqual List(1, 1, 2, 3, 5, 8)
+  }
+  it should "ランダムケース" in {
+    WorkingWithLists.flatten(List(1, List(2, List(3, List(4, 5), List(6))), List(7, 8), 9)) shouldEqual
+      List(1, 2, 3, 4, 5, 6, 7, 8, 9)
+  }
 }
