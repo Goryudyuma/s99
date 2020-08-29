@@ -40,4 +40,8 @@ object WorkingWithLists {
     if (list.isEmpty) ret
     else reverse(list.tail, list.head +: ret)
   }
+
+  def isPalindrome[A](list: List[A]): Boolean = {
+    reverse(list) == list
+  }
 }

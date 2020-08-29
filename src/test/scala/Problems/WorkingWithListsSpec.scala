@@ -58,4 +58,11 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
   it should "listが空の場合" in {
     WorkingWithLists.reverse(List(): List[Int]) shouldEqual List()
   }
+
+  "P06" should "例ケース" in {
+    WorkingWithLists.isPalindrome(List(1, 2, 3, 2, 1)) shouldEqual true
+  }
+  it should "回文ではない場合" in {
+    WorkingWithLists.isPalindrome(List(1, 2, 3, 2, 2)) shouldEqual false
+  }
 }
