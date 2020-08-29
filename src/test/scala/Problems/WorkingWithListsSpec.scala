@@ -73,4 +73,30 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
     WorkingWithLists.flatten(List(1, List(2, List(3, List(4, 5), List(6))), List(7, 8), 9)) shouldEqual
       List(1, 2, 3, 4, 5, 6, 7, 8, 9)
   }
+
+  "P08" should "例ケース" in {
+    WorkingWithLists.compress(
+      List(
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("c"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("e"),
+        Symbol("e"),
+        Symbol("e"))) shouldEqual
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("a"),
+        Symbol("d"),
+        Symbol("e"))
+  }
 }

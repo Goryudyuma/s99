@@ -38,7 +38,7 @@ object WorkingWithLists {
   @tailrec
   def reverse[A](list: List[A], ret: List[A] = List()): List[A] = {
     if (list.isEmpty) ret
-    else reverse(list.tail, list.head +: ret)
+    else reverse(list.tail, list.head :: ret)
   }
 
   def isPalindrome[A](list: List[A]): Boolean = {
@@ -49,6 +49,15 @@ object WorkingWithLists {
     list.flatMap {
       case ls: List[_] => flatten(ls)
       case ls => List(ls)
+    }
+  }
+
+  @tailrec
+  def compress[A](list: List[A], ans: List[A] = List()): List[A] = {
+    list match {
+      case a :: b :: tail if a == b => compress(b :: tail, ans)
+      case a :: b :: tail => compress(b :: tail, a :: ans)
+      case _ => reverse(list ++ ans)
     }
   }
 }
