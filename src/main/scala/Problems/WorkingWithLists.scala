@@ -81,4 +81,10 @@ object WorkingWithLists {
       case head :: tail => f(head) :: map(f)(tail)
     }
   }
+
+  def encodeModified[A](list: List[A]): List[Any] = {
+    (map[(Int, A), Any] _) ({
+      case (num: Int, c) => if (num == 1) c else (num, c)
+    }: ((Int, A)) => Any)(encode(list): List[(Int, A)])
+  }
 }
