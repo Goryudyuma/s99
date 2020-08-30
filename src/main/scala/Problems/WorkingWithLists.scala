@@ -72,6 +72,13 @@ object WorkingWithLists {
   }
 
   def encode[A](list: List[A]): List[(Int, A)] = {
-    pack(list).map(one => (length(one), one.head))
+    map((one => (length(one), one.head)): List[A] => (Int, A), pack(list))
+  }
+
+  def map[A, B](f: A => B, list: List[A]): List[B] = {
+    list match {
+      case Nil => Nil
+      case head :: tail => f(head) :: map(f, tail)
+    }
   }
 }
