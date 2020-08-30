@@ -87,4 +87,14 @@ object WorkingWithLists {
       case (num: Int, c) => if (num == 1) c else (num, c)
     }: ((Int, A)) => Any)(encode(list): List[(Int, A)])
   }
+
+  @tailrec
+  def fillList[A](num: Int, one: A, ret: List[A] = List()): List[A] = {
+    if (num == 0) ret
+    else fillList(num - 1, one, one :: ret)
+  }
+
+  def decode[A](list: List[(Int, A)]): List[A] = {
+    list.flatMap { case (num, one) => fillList(num, one) }
+  }
 }
