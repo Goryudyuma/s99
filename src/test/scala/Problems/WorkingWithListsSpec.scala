@@ -233,4 +233,25 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
         (1, Symbol("d")),
         (4, Symbol("e")))
   }
+
+  "P14" should "例ケース" in {
+    WorkingWithLists.duplicate(
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("c"),
+        Symbol("d"))) shouldEqual
+      List(
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("c"),
+        Symbol("c"),
+        Symbol("c"),
+        Symbol("d"),
+        Symbol("d"))
+  }
 }
