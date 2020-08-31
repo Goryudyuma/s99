@@ -1,6 +1,8 @@
 package Problems
 
 import scala.annotation.tailrec
+import scala.reflect.ClassTag
+import scala.language.implicitConversions
 
 object WorkingWithLists {
   @tailrec
@@ -45,10 +47,27 @@ object WorkingWithLists {
     reverse(list) == list
   }
 
-  def flatten(list: List[Any]): List[Any] = {
-    list.flatMap {
-      case ls: List[_] => flatten(ls)
-      case ls => List(ls)
+  sealed trait ListAndValue[A]
+
+  case class ListAndValueValue[A](value: A) extends ListAndValue[A]
+
+  case class ListAndValueList[A](list: List[ListAndValue[A]]) extends ListAndValue[A]
+
+  implicit def toListAndValueValue[A: ClassTag](value: A): ListAndValue[A] = {
+    value match {
+      case list: List[A@unchecked] => toListAndValueList(list)
+      case one => ListAndValueValue[A](one)
+    }
+  }
+
+  implicit def toListAndValueList[A: ClassTag](list: List[A]): ListAndValue[A] = {
+    ListAndValueList[A@unchecked](list.map(toListAndValueValue))
+  }
+
+  def flatten[A](list: ListAndValue[A]): List[A] = {
+    list match {
+      case ListAndValueValue(v) => List(v)
+      case ListAndValueList(list: List[ListAndValue[A]]) => map(flatten[A])(list).reduceLeft((a, b) => a ++ b)
     }
   }
 
