@@ -53,21 +53,36 @@ object WorkingWithLists {
 
   case class ListAndValueList[A](list: List[ListAndValue[A]]) extends ListAndValue[A]
 
-  implicit def toListAndValueValue[A: ClassTag](value: A): ListAndValue[A] = {
+  implicit def fromValueToListAndValueValue[A: ClassTag](value: A): ListAndValue[A] = {
     value match {
-      case list: List[A@unchecked] => toListAndValueList(list)
+      case list: List[A@unchecked] => fromListToListAndValueList(list)
       case one => ListAndValueValue[A](one)
     }
   }
 
-  implicit def toListAndValueList[A: ClassTag](list: List[A]): ListAndValue[A] = {
-    ListAndValueList[A@unchecked](list.map(toListAndValueValue))
+  implicit def fromListToListAndValueList[A: ClassTag](list: List[A]): ListAndValue[A] = {
+    ListAndValueList[A@unchecked](list.map(fromValueToListAndValueValue))
+  }
+
+  implicit def fromListAndValueValueToValue[A: ClassTag](value: ListAndValueValue[A]): A = {
+    value.value
   }
 
   def flatten[A](list: ListAndValue[A]): List[A] = {
     list match {
       case ListAndValueValue(v) => List(v)
-      case ListAndValueList(list: List[ListAndValue[A]]) => map(flatten[A])(list).reduceLeft((a, b) => a ++ b)
+      case ListAndValueList(list: List[ListAndValue[A]]) =>
+        reduceLeft[List[A], List[A]](a => b => a ++ b)(map[ListAndValue[A], List[A]](flatten[A])(list))
+    }
+  }
+
+  @tailrec
+  def reduceLeft[A, B >: A](f: B => A => B)(list: List[A], prev: Option[B] = None): B = {
+    (list.isEmpty, prev) match {
+      case (true, None) => throw new java.lang.UnsupportedOperationException("empty.reduceLeft")
+      case (true, Some(ans)) => ans
+      case (false, None) => reduceLeft[A, B](f)(list.tail, Some(list.head))
+      case (false, Some(one)) => reduceLeft(f)(list.tail, Some(f(one)(list.head)))
     }
   }
 
