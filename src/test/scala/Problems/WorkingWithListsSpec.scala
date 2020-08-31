@@ -207,4 +207,30 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
     val initValue = List(1, 1, 2, 3, 3, 4, 4, 4, 5, 6, 6, 6, 6, 7, 8, 9)
     WorkingWithLists.decode(WorkingWithLists.encode(initValue)) shouldEqual (initValue)
   }
+
+  "P13" should "例ケース" in {
+    WorkingWithLists.encodeDirect(
+      List(
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("c"),
+        Symbol("a"),
+        Symbol("a"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("e"),
+        Symbol("e"),
+        Symbol("e"))) shouldEqual
+      List(
+        (4, Symbol("a")),
+        (1, Symbol("b")),
+        (2, Symbol("c")),
+        (2, Symbol("a")),
+        (1, Symbol("d")),
+        (4, Symbol("e")))
+  }
 }

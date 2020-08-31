@@ -131,4 +131,24 @@ object WorkingWithLists {
   def decode[A](list: List[(Int, A)]): List[A] = {
     list.flatMap { case (num, one) => fillList(num, one) }
   }
+
+
+  @tailrec
+  def encodeDirect[A](list: List[A], prev: Option[(Int, A)] = None, ans: List[(Int, A)] = List()): List[(Int, A)] = {
+    if (list.isEmpty) {
+      reverse(
+        if (prev.isDefined) prev.get +: ans
+        else ans
+      )
+    }
+    else if (prev.isEmpty) encodeDirect(list.tail, Some((1, list.head)), ans)
+    else {
+      val prevValue: (Int, A) = prev.get
+      if (prevValue._2 == list.head)
+        encodeDirect(list.tail, Some((prevValue._1 + 1, list.head)), ans)
+      else
+        encodeDirect(list.tail, Some((1, list.head)), prevValue +: ans)
+    }
+  }
+
 }
