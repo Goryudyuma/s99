@@ -175,4 +175,8 @@ object WorkingWithLists {
     else if (list.isEmpty) (reverse(ans), list)
     else split(num - 1, list.tail, list.head :: ans)
   }
+
+  def slice[A](begin: Int, end: Int, list: List[A]): List[A] = {
+    split(begin, split(end, list)._1)._2
+  }
 }
