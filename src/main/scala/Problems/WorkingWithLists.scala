@@ -154,4 +154,9 @@ object WorkingWithLists {
   def duplicate[A](list: List[A]): List[List[A]] = {
     flatten[List[A]](map[A, List[A]](a => List(a, a))(list))
   }
+
+  def duplicateN[A](num: Int, list: List[A]):
+  List[List[A]] = {
+    flatten[List[A]](map[A, List[A]](a => List.fill(num)(a))(list))
+  }
 }
