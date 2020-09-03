@@ -163,16 +163,16 @@ object WorkingWithLists {
   def drop[A](num: Int, list: List[A], ans: List[A] = List()): List[A] = {
     if (list.isEmpty) ans
     else {
-      val (front, back) = split(num)(list)
+      val (front, back) = split(num, list)
       val ret = ans ++ front.take(num - 1)
       drop(num, back, ret)
     }
   }
 
   @tailrec
-  def split[A](num: Int)(list: List[A], ans: List[A] = List()): (List[A], List[A]) = {
+  def split[A](num: Int, list: List[A], ans: List[A] = List()): (List[A], List[A]) = {
     if (num == 0) (reverse(ans), list)
     else if (list.isEmpty) (reverse(ans), list)
-    else split(num - 1)(list.tail, list.head :: ans)
+    else split(num - 1, list.tail, list.head :: ans)
   }
 }

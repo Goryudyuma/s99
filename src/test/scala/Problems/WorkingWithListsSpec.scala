@@ -325,4 +325,35 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
         Symbol("j"),
         Symbol("k"))
   }
+
+  "P17" should "例ケース" in {
+    WorkingWithLists.split(3,
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("f"),
+        Symbol("g"),
+        Symbol("h"),
+        Symbol("i"),
+        Symbol("j"),
+        Symbol("k"))) shouldEqual
+      (
+        List(
+          Symbol("a"),
+          Symbol("b"),
+          Symbol("c")
+        ),
+        List(
+          Symbol("d"),
+          Symbol("e"),
+          Symbol("f"),
+          Symbol("g"),
+          Symbol("h"),
+          Symbol("i"),
+          Symbol("j"),
+          Symbol("k")))
+  }
 }
