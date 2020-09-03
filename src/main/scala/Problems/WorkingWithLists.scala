@@ -189,4 +189,8 @@ object WorkingWithLists {
       back ++ front
     }
   }
+
+  def removeAt[A](num: Int, list: List[A]): (List[A], A) = {
+    (list.splitAt(num)._1 ++ list.splitAt(num + 1)._2, nth(num, list))
+  }
 }

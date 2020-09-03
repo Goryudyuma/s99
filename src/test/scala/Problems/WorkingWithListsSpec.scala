@@ -432,4 +432,20 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
         Symbol("h"),
         Symbol("i"))
   }
+
+  "P20" should "例ケース" in {
+    WorkingWithLists.removeAt(1,
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("d"))) shouldEqual
+      (
+        List(
+          Symbol("a"),
+          Symbol("c"),
+          Symbol("d")
+        ),
+        Symbol("b"))
+  }
 }
