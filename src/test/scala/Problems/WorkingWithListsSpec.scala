@@ -300,4 +300,29 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
         Symbol("d"),
         Symbol("d"))
   }
+
+  "P16" should "例ケース" in {
+    WorkingWithLists.drop(3,
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("f"),
+        Symbol("g"),
+        Symbol("h"),
+        Symbol("i"),
+        Symbol("j"),
+        Symbol("k"))) shouldEqual
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("g"),
+        Symbol("h"),
+        Symbol("j"),
+        Symbol("k"))
+  }
 }

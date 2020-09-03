@@ -155,8 +155,17 @@ object WorkingWithLists {
     flatten[List[A]](map[A, List[A]](a => List(a, a))(list))
   }
 
-  def duplicateN[A](num: Int, list: List[A]):
-  List[List[A]] = {
+  def duplicateN[A](num: Int, list: List[A]): List[List[A]] = {
     flatten[List[A]](map[A, List[A]](a => List.fill(num)(a))(list))
+  }
+
+  @tailrec
+  def drop[A](num: Int, list: List[A], ans: List[A] = List()): List[A] = {
+    if (list.isEmpty) ans
+    else {
+      val (front, back) = list.splitAt(num)
+      val ret = ans ++ front.take(num - 1)
+      drop(num, back, ret)
+    }
   }
 }
