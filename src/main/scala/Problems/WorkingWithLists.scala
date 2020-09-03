@@ -179,4 +179,14 @@ object WorkingWithLists {
   def slice[A](begin: Int, end: Int, list: List[A]): List[A] = {
     split(begin, split(end, list)._1)._2
   }
+
+  @tailrec
+  def rotate[A](num: Int, list: List[A]): List[A] = {
+    if (num < 0) rotate((Math.abs(num) / list.length + 1) * list.length + num, list)
+    else if (num >= list.length) rotate(num % list.length, list)
+    else {
+      val (front, back) = split(num, list)
+      back ++ front
+    }
+  }
 }

@@ -377,4 +377,59 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
         Symbol("f"),
         Symbol("g"))
   }
+
+  "P19" should "例ケース" in {
+    WorkingWithLists.rotate(3,
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("f"),
+        Symbol("g"),
+        Symbol("h"),
+        Symbol("i"),
+        Symbol("j"),
+        Symbol("k"))) shouldEqual
+      List(
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("f"),
+        Symbol("g"),
+        Symbol("h"),
+        Symbol("i"),
+        Symbol("j"),
+        Symbol("k"),
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"))
+  }
+  it should "例ケース2" in {
+    WorkingWithLists.rotate(-2,
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("f"),
+        Symbol("g"),
+        Symbol("h"),
+        Symbol("i"),
+        Symbol("j"),
+        Symbol("k"))) shouldEqual
+      List(
+        Symbol("j"),
+        Symbol("k"),
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("d"),
+        Symbol("e"),
+        Symbol("f"),
+        Symbol("g"),
+        Symbol("h"),
+        Symbol("i"))
+  }
 }
