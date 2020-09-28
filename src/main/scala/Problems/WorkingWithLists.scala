@@ -193,4 +193,9 @@ object WorkingWithLists {
   def removeAt[A](num: Int, list: List[A]): (List[A], A) = {
     (list.splitAt(num)._1 ++ list.splitAt(num + 1)._2, nth(num, list))
   }
+
+  def insertAt[A](value: A, i: Int, list: List[A]): List[A] = {
+    val splitList = split(i, list)
+    (splitList._1 :+ value) ++ splitList._2
+  }
 }

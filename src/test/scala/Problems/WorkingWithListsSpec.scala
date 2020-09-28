@@ -448,4 +448,12 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
         ),
         Symbol("b"))
   }
+
+  "P21" should "例ケース" in {
+    WorkingWithLists.insertAt(
+      Symbol("new"), 1,
+      List(Symbol("a"), Symbol("b"), Symbol("c"), Symbol("d"))
+    ) shouldEqual
+      List(Symbol("a"), Symbol("new"), Symbol("b"), Symbol("c"), Symbol("d"))
+  }
 }
