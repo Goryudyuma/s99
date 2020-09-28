@@ -198,4 +198,10 @@ object WorkingWithLists {
     val splitList = split(i, list)
     (splitList._1 :+ value) ++ splitList._2
   }
+
+  @tailrec
+  def range(a: Integer, b: Integer, ret: List[Integer] = List()): List[Integer] = {
+    if (a > b) reverse(ret)
+    else range(a + 1, b, a :: ret)
+  }
 }

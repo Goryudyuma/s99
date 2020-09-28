@@ -456,4 +456,9 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
     ) shouldEqual
       List(Symbol("a"), Symbol("new"), Symbol("b"), Symbol("c"), Symbol("d"))
   }
+
+  "P22" should "例ケース" in {
+    WorkingWithLists.range(4, 9) shouldEqual
+      List(4, 5, 6, 7, 8, 9)
+  }
 }
