@@ -211,4 +211,10 @@ object WorkingWithLists {
     if (length(list) > n) randomSelect(n, removeAt(Random.nextInt(n), list)._1)
     else list
   }
+
+  @tailrec
+  def lotto(n: Integer, M: Integer, ret: List[Integer] = List()): List[Integer] = {
+    if (n == 0) ret
+    else lotto(n - 1, M, Random.nextInt(M) + 1 :: ret)
+  }
 }

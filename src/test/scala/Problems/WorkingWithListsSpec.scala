@@ -475,4 +475,8 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
       )).length shouldEqual
       3
   }
+
+  "P24" should "個数があっているか" in {
+    WorkingWithLists.lotto(6, 49).length shouldEqual 6
+  }
 }
