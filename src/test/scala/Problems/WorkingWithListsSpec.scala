@@ -461,4 +461,18 @@ class WorkingWithListsSpec extends AnyFlatSpec with Matchers {
     WorkingWithLists.range(4, 9) shouldEqual
       List(4, 5, 6, 7, 8, 9)
   }
+
+  "P23" should "例ケース" in {
+    WorkingWithLists.randomSelect(3,
+      List(
+        Symbol("a"),
+        Symbol("b"),
+        Symbol("c"),
+        Symbol("d"),
+        Symbol("f"),
+        Symbol("g"),
+        Symbol("h")
+      )).length shouldEqual
+      3
+  }
 }

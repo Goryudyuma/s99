@@ -3,6 +3,7 @@ package Problems
 import scala.annotation.tailrec
 import scala.reflect.ClassTag
 import scala.language.implicitConversions
+import scala.util.Random
 
 object WorkingWithLists {
   @tailrec
@@ -203,5 +204,11 @@ object WorkingWithLists {
   def range(a: Integer, b: Integer, ret: List[Integer] = List()): List[Integer] = {
     if (a > b) reverse(ret)
     else range(a + 1, b, a :: ret)
+  }
+
+  @tailrec
+  def randomSelect[A](n: Integer, list: List[A]): List[A] = {
+    if (length(list) > n) randomSelect(n, removeAt(Random.nextInt(n), list)._1)
+    else list
   }
 }
